@@ -1,7 +1,7 @@
 {
   "name": "homebridge-gpio-garagedoor",
   "description": "Raspberry Pi GPIO based Garage Door plugin for Homebridge",
-  "version": "0.2.0-alpha001",
+  "version": "0.2.0-alpha002",
   "repository": {
     "type": "git",
     "url": "git://github.com/kraigm/homebridge-gpio-garagedoor.git"

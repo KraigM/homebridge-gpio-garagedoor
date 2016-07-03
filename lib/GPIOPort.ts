@@ -8,11 +8,10 @@
 import util = require("util");
 import Promise = require("bluebird");
 import onoff = require("onoff");
-import Bluebird = require("~bluebird/bluebird");
 import Gpio = __ONOFF.Gpio;
 
-var gpioReadAsync = Bluebird.promisify(Gpio.prototype.read);
-var gpioWriteAsync = Bluebird.promisify(Gpio.prototype.write);
+var gpioReadAsync = Promise.promisify(Gpio.prototype.read);
+var gpioWriteAsync = Promise.promisify(Gpio.prototype.write);
 
 export enum GPIOState {
 	On = 1,
