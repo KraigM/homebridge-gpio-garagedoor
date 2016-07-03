@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "bluebird": "registry:npm/bluebird#3.3.4+20160622205516"
+  },
+  "globalDevDependencies": {
+    "node": "registry:dt/node#0.12.0+20160608055420",
+    "onoff": "registry:dt/onoff#0.0.0+20160206144506"
+  }
+}
