@@ -8,7 +8,7 @@
 import util = require("util");
 import Promise = require("bluebird");
 import onoff = require("onoff");
-import Gpio = __ONOFF.Gpio;
+import Gpio = onoff.Gpio;
 
 var gpioReadAsync = Promise.promisify(Gpio.prototype.read);
 var gpioWriteAsync = Promise.promisify(Gpio.prototype.write);
@@ -30,7 +30,7 @@ export type GPIOEdge =
 	'falling' |
 	'both';
 
-export class GPIOPort extends __ONOFF.Gpio {
+export class GPIOPort extends Gpio {
 
 	constructor(gpio:number, direction:GPIODirection, edge?:GPIOEdge) {
 		super(gpio, direction, edge);
@@ -52,11 +52,11 @@ export class GPIOPort extends __ONOFF.Gpio {
 		return val;
 	};
 
-	readAsync(state:GPIOState): Bluebird<any> {
+	readAsync(state:GPIOState): Promise<any> {
 		return gpioReadAsync.call(this);
 	}
 
-	writeAsync(state:GPIOState): Bluebird<any> {
+	writeAsync(state:GPIOState): Promise<any> {
 		return gpioWriteAsync.call(this);
 	}
 }
