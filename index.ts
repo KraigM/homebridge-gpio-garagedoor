@@ -1,11 +1,11 @@
-/// <reference path="typings/index.d.ts" />
+/// <reference path="./typings/globals/node/index.d.ts" />
 
 import DoorSensorPort from "./lib/DoorSensorPort";
 import SwitchPort from "./lib/SwitchPort";
 import GPIOGarageDoorAccessory from "./lib/GPIOGarageDoorAccessory";
 import DoorStateExtension from "./lib/DoorStateExtension";
 
-export default function(homebridge) {
+module.exports = function (homebridge) {
   var exportTypes = {
     Accessory: homebridge.hap.Accessory,
     Service: homebridge.hap.Service,

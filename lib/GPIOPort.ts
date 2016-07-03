@@ -2,6 +2,9 @@
  * Created by kraig on 7/2/16.
  */
 
+/// <reference path="../typings/globals/onoff/index.d.ts" />
+/// <reference path="../typings/modules/bluebird/index.d.ts" />
+
 import util = require("util");
 import Promise = require("bluebird");
 import onoff = require("onoff");
