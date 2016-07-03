@@ -7,15 +7,15 @@ import {getDoorState} from "./DoorStateExtension";
 
 var Characteristic;
 
-export function initDoorSensorPort(exportTypes) {
-	Characteristic = exportTypes.Characteristic;
-}
-
-export class DoorSensorPort extends GPIOPort {
+export default class DoorSensorPort extends GPIOPort {
 	private service:any;
 	private log:any;
 	private closedSensorValue;
 	isClosed;
+
+	static init(exportTypes) {
+		Characteristic = exportTypes.Characteristic;
+	}
 
 	constructor(pin, service, log, isNCSensor) {
 		super(pin, 'in', 'both');

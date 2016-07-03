@@ -1,12 +1,11 @@
-import util = require("util");
-import Promise = require("bluebird");
-import GPIO = require("onoff");
-import {initDoorStateExtension} from "./lib/DoorStateExtension";
-import {initDoorSensorPort} from "./lib/DoorSensorPort";
-import {initSwitchPort} from "./lib/SwitchPort";
-import {GPIOGarageDoorAccessory, initGPIOGarageDoorAccessory} from "./lib/GPIOGarageDoorAccessory";
+/// <reference path="typings/index.d.ts" />
 
-module.exports = function(homebridge) {
+import DoorSensorPort from "./lib/DoorSensorPort";
+import SwitchPort from "./lib/SwitchPort";
+import GPIOGarageDoorAccessory from "./lib/GPIOGarageDoorAccessory";
+import DoorStateExtension from "./lib/DoorStateExtension";
+
+export default function(homebridge) {
   var exportTypes = {
     Accessory: homebridge.hap.Accessory,
     Service: homebridge.hap.Service,
@@ -14,10 +13,10 @@ module.exports = function(homebridge) {
     uuid: homebridge.hap.uuid,
   };
 
-  initDoorStateExtension(exportTypes);
-  initDoorSensorPort(exportTypes);
-  initSwitchPort(exportTypes);
-  initGPIOGarageDoorAccessory(exportTypes);
+  DoorStateExtension.init(exportTypes);
+  DoorSensorPort.init(exportTypes);
+  SwitchPort.init(exportTypes);
+  GPIOGarageDoorAccessory.init(exportTypes);
 
   homebridge.registerAccessory("homebridge-gpio-garagedoor", "GPIOGarageDoor", GPIOGarageDoorAccessory);
 };

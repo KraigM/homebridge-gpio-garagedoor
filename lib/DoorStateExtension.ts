@@ -4,8 +4,10 @@
 
 var Characteristic;
 
-export function initDoorStateExtension(exportedTypes): void {
-	Characteristic = exportedTypes.Characteristic;
+export default class DoorStateExtension {
+	static init(exportedTypes):void {
+		Characteristic = exportedTypes.Characteristic;
+	}
 }
 
 export function getDoorState(service): any {

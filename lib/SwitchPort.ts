@@ -7,14 +7,14 @@ import {asDoorState, asOperationState, getDoorState} from "./DoorStateExtension"
 
 var Characteristic;
 
-export function initSwitchPort(exportTypes) {
-	Characteristic = exportTypes.Characteristic;
-}
-
-export class SwitchPort extends GPIOPort {
+export default class SwitchPort extends GPIOPort {
 	private isOperating:boolean;
 	private service;
 	private log;
+
+	static init(exportTypes) {
+		Characteristic = exportTypes.Characteristic;
+	}
 	
 	constructor(pin, service, log, doorSensor, doorOpensInSeconds) {
 		super(pin, 'out');
