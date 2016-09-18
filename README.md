@@ -12,7 +12,7 @@
 Configuration sample:
 
  ```
-	"platforms": [
+	"accessories": [
 		{
 			"accessory": "GPIOGarageDoor",
 			"name": "Garage Door",
