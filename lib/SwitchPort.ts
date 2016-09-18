@@ -29,7 +29,7 @@ export default class SwitchPort extends GPIOPort {
 				case Characteristic.CurrentDoorState.OPENING:
 				case Characteristic.CurrentDoorState.CLOSING:
 					callback(new Error('Must wait until operation is finished'));
-					break;
+					return;
 				default:
 					if (asDoorState(state) == curState) {
 						callback();
