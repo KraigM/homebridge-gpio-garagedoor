@@ -8,8 +8,8 @@ import {getDoorState} from "./DoorStateExtension";
 var Characteristic;
 
 export default class DoorSensorPort extends GPIOPort {
-	private service:any;
-	private log:any;
+	private service: any;
+	private log: any;
 	private closedSensorValue;
 	isClosed;
 
@@ -35,12 +35,12 @@ export default class DoorSensorPort extends GPIOPort {
 		this.reset();
 	}
 
-	reset():void {
+	reset(): void {
 		this.isClosed = this.getState() == this.closedSensorValue;
 		this.update();
 	};
 
-	refresh():void {
+	refresh(): void {
 		switch (getDoorState(this.service)) {
 			case Characteristic.CurrentDoorState.CLOSING:
 			case Characteristic.CurrentDoorState.OPENING:
@@ -50,7 +50,7 @@ export default class DoorSensorPort extends GPIOPort {
 		}
 	};
 
-	update():void {
+	update(): void {
 		this.service.getCharacteristic(Characteristic.CurrentDoorState)
 			.setValue(this.isClosed ? Characteristic.CurrentDoorState.CLOSED : Characteristic.CurrentDoorState.OPEN);
 	};

@@ -5,7 +5,7 @@
 var Characteristic;
 
 export default class DoorStateExtension {
-	static init(exportedTypes):void {
+	static init(exportedTypes): void {
 		Characteristic = exportedTypes.Characteristic;
 	}
 }

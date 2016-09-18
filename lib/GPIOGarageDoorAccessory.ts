@@ -19,10 +19,10 @@ export default class GPIOGarageDoorAccessory {
 	private doorSwitch: SwitchPort;
 
 	// Base class methods
-	private addService:(any)=>any;
-	private getService:(any)=>any;
-	private services:any[];
-	private uuid_base:string;
+	private addService: (any) => any;
+	private getService: (any) => any;
+	private services: any[];
+	private uuid_base: string;
 
 	static init(exportTypes) {
 		Accessory = exportTypes.Accessory;

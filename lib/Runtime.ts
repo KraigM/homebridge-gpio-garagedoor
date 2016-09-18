@@ -4,7 +4,7 @@
 
 import {inherits} from "util";
 
-export function mixin(Class:any, MixinClass:any, doOverride?:boolean) {
+export function mixin(Class: any, MixinClass: any, doOverride?: boolean) {
 	var mixinMethods = MixinClass.prototype || MixinClass;
 	var cls = Class.prototype || Class;
 	Object.getOwnPropertyNames(mixinMethods).forEach(name => {
@@ -13,7 +13,7 @@ export function mixin(Class:any, MixinClass:any, doOverride?:boolean) {
 	});
 }
 
-export function changeBase(Class:any, BaseClass:any) {
+export function changeBase(Class: any, BaseClass: any) {
 	var orig = Class.prototype;
 	inherits(Class, BaseClass);
 	Class.prototype.parent = BaseClass.prototype;

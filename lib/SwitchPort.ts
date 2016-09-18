@@ -8,14 +8,14 @@ import {asDoorState, asOperationState, getDoorState} from "./DoorStateExtension"
 var Characteristic;
 
 export default class SwitchPort extends GPIOPort {
-	private isOperating:boolean;
+	private isOperating: boolean;
 	private service;
 	private log;
 
 	static init(exportTypes) {
 		Characteristic = exportTypes.Characteristic;
 	}
-	
+
 	constructor(pin, service, log, doorSensor, doorOpensInSeconds) {
 		super(pin, 'out');
 		this.service = service;
@@ -62,7 +62,7 @@ export default class SwitchPort extends GPIOPort {
 		});
 	}
 
-	refresh() : void {
+	refresh(): void {
 		if (this.isOperating) return;
 		this.service.getCharacteristic(Characteristic.TargetDoorState)
 			.setValue(getDoorState(this.service) == Characteristic.CurrentDoorState.OPEN ?

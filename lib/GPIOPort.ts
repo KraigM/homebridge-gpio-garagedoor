@@ -32,7 +32,7 @@ export type GPIOEdge =
 
 export class GPIOPort extends Gpio {
 
-	constructor(gpio:number, direction:GPIODirection, edge?:GPIOEdge) {
+	constructor(gpio: number, direction: GPIODirection, edge?: GPIOEdge) {
 		super(gpio, direction, edge);
 		var self = this;
 		process.on('SIGINT', function () {
@@ -40,9 +40,9 @@ export class GPIOPort extends Gpio {
 		});
 	};
 
-	getState(retryCount?:number):GPIOState {
+	getState(retryCount?: number): GPIOState {
 		retryCount = retryCount != null ? retryCount : 3;
-		let val:number = 0;
+		let val: number = 0;
 		for (var i = 0; i < retryCount; i++) {
 			val = this.readSync();
 			if (val == 1) {
@@ -52,11 +52,11 @@ export class GPIOPort extends Gpio {
 		return val;
 	};
 
-	readAsync(state:GPIOState): Promise<any> {
+	readAsync(state: GPIOState): Promise<any> {
 		return gpioReadAsync.call(this);
 	}
 
-	writeAsync(state:GPIOState): Promise<any> {
+	writeAsync(state: GPIOState): Promise<any> {
 		return gpioWriteAsync.call(this);
 	}
 }
