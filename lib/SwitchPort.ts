@@ -2,8 +2,9 @@
  * Created by kraig on 7/2/16.
  */
 
+import DoorSensorPort from "./DoorSensorPort";
 import {GPIOPort, GPIOState} from "./GPIOPort";
-import {asDoorState, asOperationState, getDoorState} from "./DoorStateExtension";
+import {asDoorState, asOperationState, getCurrentDoorState} from "./DoorStateExtension";
 
 var Characteristic;
 
@@ -16,7 +17,7 @@ export default class SwitchPort extends GPIOPort {
 		Characteristic = exportTypes.Characteristic;
 	}
 
-	constructor(pin, service, log, doorSensor, doorOpensInSeconds) {
+	constructor(pin, service, log, doorSensor: DoorSensorPort, doorOpensInSeconds) {
 		super(pin, 'out');
 		this.service = service;
 		this.log = log;
@@ -24,19 +25,21 @@ export default class SwitchPort extends GPIOPort {
 		var self = this;
 		var targetState = service.getCharacteristic(Characteristic.TargetDoorState);
 		targetState.on('set', function (state, callback) {
-			var curState = getDoorState(service);
+			var curState = getCurrentDoorState(service);
 			switch (curState) {
 				case Characteristic.CurrentDoorState.OPENING:
 				case Characteristic.CurrentDoorState.CLOSING:
 					callback(new Error('Must wait until operation is finished'));
 					return;
 				default:
+					// If the target state is equal to current state, do nothing.
 					if (asDoorState(state) == curState) {
 						callback();
 						return;
 					}
 					break;
 			}
+
 			self.isOperating = true;
 			self.log.debug("Started operation");
 			self.writeAsync(GPIOState.On)
@@ -65,7 +68,7 @@ export default class SwitchPort extends GPIOPort {
 	refresh(): void {
 		if (this.isOperating) return;
 		this.service.getCharacteristic(Characteristic.TargetDoorState)
-			.setValue(getDoorState(this.service) == Characteristic.CurrentDoorState.OPEN ?
+			.setValue(getCurrentDoorState(this.service) == Characteristic.CurrentDoorState.OPEN ?
 				Characteristic.TargetDoorState.OPEN :
 				Characteristic.TargetDoorState.CLOSED);
 	};
