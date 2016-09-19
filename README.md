@@ -31,4 +31,4 @@ Fields:
 * "doorSwitchPin": GPIO pin that is used to trigger the garage door switch (required)
 * "doorSensorPin": GPIO pin that is used to detect if the state of the garage door (required)
 * "isNCSensor": Specifies whether the door sensor is a Normally Closed (NC) type or Normally Open (NO) type (optional, default false NO)
-* "doorSensorPin": GPIO pin that is used to detect if the state of the garage door (required)
+* "doorOpensInSeconds": Number of seconds for the garage door to open completely (required)
