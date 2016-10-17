@@ -60,6 +60,7 @@ export default class SwitchPort extends GPIOPort {
 					//TODO: log issues
 				});
 		});
+		this.refresh();
 	}
 
 	refresh() : void {
