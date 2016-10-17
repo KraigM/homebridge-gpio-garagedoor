@@ -52,12 +52,12 @@ export class GPIOPort extends Gpio {
 		return val;
 	};
 
-	readAsync(state:GPIOState): Promise<any> {
+	readAsync(): Promise<GPIOState> {
 		return gpioReadAsync.call(this);
 	}
 
 	writeAsync(state:GPIOState): Promise<any> {
-		return gpioWriteAsync.call(this);
+		return gpioWriteAsync.call(this, state);
 	}
 }
 
