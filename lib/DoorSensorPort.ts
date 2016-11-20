@@ -54,7 +54,7 @@ export default class DoorSensorPort extends GPIOPort {
 			this.service.getCharacteristic(Characteristic.TargetDoorState)
 				.setValue(this.isClosed ? Characteristic.TargetDoorState.CLOSED : Characteristic.TargetDoorState.OPEN);
 		}
-	}
+	};
 
 	reset(): void {
 		this.isClosed = this.getState() == this.closedSensorValue;

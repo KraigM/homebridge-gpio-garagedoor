@@ -55,7 +55,7 @@ export function getTargetDoorStateDescription(doorState): any {
 	switch (doorState) {
 		case Characteristic.TargetDoorState.OPEN:
 			return "OPEN";
-		case Characteristic.CurrentDoorState.CLOSED:
+		case Characteristic.TargetDoorState.CLOSED:
 			return "CLOSED";
 	}
 }
