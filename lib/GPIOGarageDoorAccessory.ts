@@ -5,7 +5,7 @@
 import util = require("util");
 import Promise = require("bluebird");
 import GPIO = require("onoff");
-import {getDoorStateDescription} from "./DoorStateExtension";
+import {getCurrentDoorStateDescription} from "./DoorStateExtension";
 import {changeBase} from "./Runtime";
 import DoorSensorPort from "./DoorSensorPort";
 import SwitchPort from "./SwitchPort";
@@ -19,10 +19,10 @@ export default class GPIOGarageDoorAccessory {
 	private doorSwitch: SwitchPort;
 
 	// Base class methods
-	private addService:(any)=>any;
-	private getService:(any)=>any;
-	private services:any[];
-	private uuid_base:string;
+	private addService: (any) => any;
+	private getService: (any) => any;
+	private services: any[];
+	private uuid_base: string;
 
 	static init(exportTypes) {
 		Accessory = exportTypes.Accessory;
@@ -61,7 +61,7 @@ export default class GPIOGarageDoorAccessory {
 
 		garageDoorOpener.getCharacteristic(Characteristic.CurrentDoorState)
 			.on('change', function (change) {
-				log("Garage Door state changed to " + getDoorStateDescription(change.newValue));
+				log("Garage Door state changed to " + getCurrentDoorStateDescription(change.newValue));
 			});
 
 		this.getService(Service.AccessoryInformation)
