@@ -39,7 +39,6 @@ export default class DoorSensorPort extends GPIOPort {
 
 	handleStateChange() {
 		var currentState = getCurrentDoorState(this.service);
-		var targetState = getTargetDoorState(this.service);
 		switch (currentState) {
 			case Characteristic.CurrentDoorState.CLOSING:
 			case Characteristic.CurrentDoorState.OPENING:
@@ -49,6 +48,7 @@ export default class DoorSensorPort extends GPIOPort {
 		}
 
 		// Handle external state change.
+		var targetState = getTargetDoorState(this.service);
 		if ((this.isClosed && targetState == Characteristic.TargetDoorState.OPEN)
 			|| (!this.isClosed && targetState == Characteristic.TargetDoorState.CLOSED)) {
 			this.service.getCharacteristic(Characteristic.TargetDoorState)
