@@ -45,10 +45,10 @@ export default class DoorSensorPort extends GPIOPort {
 			case Characteristic.CurrentDoorState.OPENING:
 				return;
 			default:
-				this.updateCurrentDorrState();
+				this.updateCurrentDoorState();
 		}
 
-		// Handle exnternal state change.
+		// Handle external state change.
 		if ((this.isClosed && targetState == Characteristic.TargetDoorState.OPEN)
 			|| (!this.isClosed && targetState == Characteristic.TargetDoorState.CLOSED)) {
 			this.service.getCharacteristic(Characteristic.TargetDoorState)
@@ -58,10 +58,10 @@ export default class DoorSensorPort extends GPIOPort {
 
 	reset(): void {
 		this.isClosed = this.getState() == this.closedSensorValue;
-		this.updateCurrentDorrState();
+		this.updateCurrentDoorState();
 	};
 
-	updateCurrentDorrState(): void {
+	updateCurrentDoorState(): void {
 		this.service.getCharacteristic(Characteristic.CurrentDoorState)
 			.setValue(this.isClosed ? Characteristic.CurrentDoorState.CLOSED : Characteristic.CurrentDoorState.OPEN);
 	};
