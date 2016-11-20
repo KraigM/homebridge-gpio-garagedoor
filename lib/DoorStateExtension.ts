@@ -5,13 +5,17 @@
 var Characteristic;
 
 export default class DoorStateExtension {
-	static init(exportedTypes):void {
+	static init(exportedTypes): void {
 		Characteristic = exportedTypes.Characteristic;
 	}
 }
 
-export function getDoorState(service): any {
+export function getCurrentDoorState(service): any {
 	return service.getCharacteristic(Characteristic.CurrentDoorState).value;
+}
+
+export function getTargetDoorState(service): any {
+	return service.getCharacteristic(Characteristic.TargetDoorState).value;
 }
 
 export function asDoorState(targetState): any {
@@ -32,7 +36,7 @@ export function asOperationState(targetState): any {
 	}
 }
 
-export function getDoorStateDescription(doorState): any {
+export function getCurrentDoorStateDescription(doorState): any {
 	switch (doorState) {
 		case Characteristic.CurrentDoorState.OPEN:
 			return "OPEN";
@@ -44,5 +48,14 @@ export function getDoorStateDescription(doorState): any {
 			return "CLOSED";
 		case Characteristic.CurrentDoorState.STOPPED:
 			return "STOPPED";
+	}
+}
+
+export function getTargetDoorStateDescription(doorState): any {
+	switch (doorState) {
+		case Characteristic.TargetDoorState.OPEN:
+			return "OPEN";
+		case Characteristic.TargetDoorState.CLOSED:
+			return "CLOSED";
 	}
 }
